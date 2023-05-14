@@ -10,4 +10,6 @@ https://linkedin.com/in/ElvisMiranda
 Software Engineer with over 12+ years of experience implementing enterprise-grade systems in Java and .NET.
 
 Experienced in the Spring Framework, Hibernate, ORM and Database Technologies, with a strong understanding of SCRUM and Agile methodologies.</string>
+    <string name="what_is_your_nickname">What is your nickname?</string>
+    <string name="done">Done</string>
 </resources>
