@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">About Me</string>
+    <string name="name">Elvis Miranda</string>
+    <string name="yellow_star">Yellow Star</string>
+    <string name="bio">Android Developer\n\n
+elvis.miranda@live.com\n
++59170206987\n
+https://linkedin.com/in/ElvisMiranda\n\n
+
+Software Engineer with over 12+ years of experience implementing enterprise-grade systems in Java and .NET.\n\n
+
+Experienced in the Spring Framework, Hibernate, ORM and Database Technologies, with a strong understanding of SCRUM and Agile methodologies.</string>
+    <string name="what_is_your_nickname">What is your nickname?</string>
+    <string name="done">Done</string>
+</resources>
