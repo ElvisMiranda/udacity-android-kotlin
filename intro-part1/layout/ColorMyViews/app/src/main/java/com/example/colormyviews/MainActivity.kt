@@ -4,10 +4,14 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var yellowButton: Button
+    private lateinit var greenButton: Button
+    private lateinit var redButton: Button
     private lateinit var boxOneText: TextView
     private lateinit var boxTwoText: TextView
     private lateinit var boxThreeText: TextView
@@ -24,12 +28,17 @@ class MainActivity : AppCompatActivity() {
         boxFourText = findViewById(R.id.box_four_text)
         boxFiveText = findViewById(R.id.box_five_text)
 
+        redButton = findViewById(R.id.red_button)
+        yellowButton = findViewById(R.id.yellow_button)
+        greenButton = findViewById(R.id.green_button)
+
         setListeners()
     }
 
     private fun setListeners() {
         val clickableViews: List<View>
-            = listOf(boxOneText, boxTwoText, boxThreeText, boxFourText, boxFiveText)
+            = listOf(boxOneText, boxTwoText, boxThreeText,
+            boxFourText, boxFiveText, redButton, greenButton, yellowButton)
 
         for (item in clickableViews) {
             item.setOnClickListener { makeColored(it) }
@@ -47,6 +56,11 @@ class MainActivity : AppCompatActivity() {
             R.id.box_three_text -> view.setBackgroundResource(android.R.color.holo_green_light)
             R.id.box_four_text -> view.setBackgroundResource(android.R.color.holo_green_dark)
             R.id.box_five_text -> view.setBackgroundResource(android.R.color.holo_green_light)
+
+            // Boxes using custom colors for background
+            R.id.red_button -> boxThreeText.setBackgroundResource(R.color.my_red)
+            R.id.yellow_button -> boxFourText.setBackgroundResource(R.color.my_yellow)
+            R.id.green_button -> boxFiveText.setBackgroundResource(R.color.my_green)
 
             else -> view.setBackgroundColor(Color.LTGRAY)
         }
