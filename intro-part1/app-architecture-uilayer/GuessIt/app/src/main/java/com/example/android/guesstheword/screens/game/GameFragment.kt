@@ -17,7 +17,6 @@
 package com.example.android.guesstheword.screens.game
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,7 +38,7 @@ class GameFragment : Fragment() {
     private lateinit var viewModel: GameViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+                              savedInstanceState: Bundle?): View {
 
         // Inflate view and obtain an instance of the binding class
         binding = DataBindingUtil.inflate(
@@ -51,38 +50,30 @@ class GameFragment : Fragment() {
 
         // Get the ViewModel
         viewModel = ViewModelProvider(this)[GameViewModel::class.java]
+        viewModel.score.observe(viewLifecycleOwner) { newScore ->
+            binding.scoreText.text = newScore.toString()
+        }
+        viewModel.word.observe(viewLifecycleOwner) { newWord ->
+            binding.wordText.text = newWord.toString()
+        }
 
         binding.correctButton.setOnClickListener {
             viewModel.onCorrect()
-            updateScoreText()
-            updateWordText()
         }
         binding.skipButton.setOnClickListener {
             viewModel.onSkip()
-            updateScoreText()
-            updateWordText()
         }
-        updateScoreText()
-        updateWordText()
-        return binding.root
 
+        return binding.root
     }
 
     /**
      * Called when the game is finished
      */
     private fun gameFinished() {
-        val action = GameFragmentDirections.actionGameToScore(viewModel.score)
+        val currentScore = viewModel.score.value ?: 0
+        val action = GameFragmentDirections.actionGameToScore(currentScore)
+
         findNavController(this).navigate(action)
-    }
-
-    /** Methods for updating the UI **/
-
-    private fun updateWordText() {
-        binding.wordText.text = viewModel.word
-    }
-
-    private fun updateScoreText() {
-        binding.scoreText.text = viewModel.score.toString()
     }
 }
