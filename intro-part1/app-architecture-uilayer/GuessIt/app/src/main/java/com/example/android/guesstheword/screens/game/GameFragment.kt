@@ -55,14 +55,6 @@ class GameFragment : Fragment() {
         viewModel = ViewModelProvider(this)[GameViewModel::class.java]
 
         viewModel.apply {
-            score.observe(viewLifecycleOwner) { newScore ->
-                binding.scoreText.text = newScore.toString()
-            }
-
-            word.observe(viewLifecycleOwner) { newWord ->
-                binding.wordText.text = newWord.toString()
-            }
-
             currentTime.observe(viewLifecycleOwner) { newTime ->
                 binding.timerText.text = DateUtils.formatElapsedTime(newTime)
             }
@@ -75,6 +67,8 @@ class GameFragment : Fragment() {
         }
 
         binding.gameViewModel = viewModel
+
+        binding.lifecycleOwner = this
 
         return binding.root
     }
